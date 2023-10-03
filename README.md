@@ -31,7 +31,9 @@ But you can also set it to a branch name like `nixos-23.05`.
 | ref         | rev       | date       |
 |-------------|-----------|------------|
 | nixos-22.11 | `ea4c80b` | 2023-09-10 |
+| nixos-23.05 | `c99004f` | 2023-07-06 |
 | nixos-23.05 | `da5adce` | 2023-09-06 |
+| nixos-23.05 | `32dcb45f66c0487e92db8303a798ebc548cadedc` | 2023-10-03 |
 
 ### Build
 ```shell
