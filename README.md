@@ -66,5 +66,5 @@ IP=10.0.0.33 nixops create -I nixpkgs="https://github.com/NixOS/nixpkgs/archive/
 
 ### Deploy
 ```shell
-IP=10.0.0.33 nixops deploy -I nixpkgs="https://github.com/NixOS/nixpkgs/archive/${PKGS_HASH}.tar.gz" -I machine=machines/$MACHINE
+IP=10.0.0.33 nixops deploy -I nixpkgs="https://github.com/NixOS/nixpkgs/archive/${NIXPKGS_REV}.tar.gz" -I machine=machines/$MACHINE
 ```
