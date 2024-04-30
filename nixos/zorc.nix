@@ -2,7 +2,7 @@
 with pkgs;
 let
   setup_can = writeScriptBin "setup_can" ''
-    #!${bash}/bin/bash
+    #! ${bash}/bin/bash
     
     set -euxo pipefail
     
@@ -87,21 +87,36 @@ in
 
   systemd.services = {
     can0-setup = {
-      enable = false;
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
+      # enable = false;
+      wantedBy = [ "default.target" ];
+      after = [ "network-online.target" ];
       description = "Setup can0";
       serviceConfig = {
         Type = "oneshot";
         ExecStart = ''${setup_can}/bin/setup_can can0 1000000'';
       };
     };
+
     canopend = {
-      enable = false;
+      # enable = false;
       wantedBy = [ "default.target" ];
       after = [ "can0-setup.service" ];
       serviceConfig = {
         ExecStart = ''${canopend}/bin/canopend can0 -i 2 -c "local-/tmp/CO_command_socket.socat"'';
+        Nice = "-5";
+        Restart = "always";
+        RestartSec = "5";
+        User = "zorc";
+        WorkingDirectory = "/var/lib/zorc/";
+      };
+    };
+    
+    zorcd = {
+      # enable = false;
+      wantedBy = [ "default.target" ];
+      after = [ "canopend.service" ];
+      serviceConfig = {
+        ExecStart = ''${zorc}/bin/zorc'';
         Nice = "-5";
         Restart = "always";
         RestartSec = "5";

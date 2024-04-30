@@ -39,9 +39,7 @@
     # getty.autologinUser = "nixos";
     openssh = {
       enable = true;
-      # settings.PasswordAuthentication = if config.users.extraUsers.nixos.openssh.authorizedKeys.keys == [ ] then true else false;
       settings.PasswordAuthentication = true;
-      # forwardX11 = true;
     };
   };
 

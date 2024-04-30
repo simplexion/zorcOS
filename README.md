@@ -13,6 +13,15 @@ nix-build -I nixpkgs="https://github.com/NixOS/nixpkgs/archive/${NIXPKGS_REV}.ta
 sudo sh -c "zstd -dcf out-links/$MACHINE/sd-image/*.img.zst | dd status=progress bs=64k iflag=fullblock oflag=direct of=$SD_CARD && sync && eject $SD_CARD"
 ```
 
+Connect Pi Zero W accordingly (Magent Encoder optional).
+![](./PiZeroWiring_bb.png)
+Plug in SD card and power on.
+
+After boot you can access the ZORC interface on port 1337.
+```shell
+telnet -4 zorc.lan 1337
+```
+
 ## Building
 
 ### Machines
