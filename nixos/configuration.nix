@@ -30,9 +30,12 @@
   security.sudo.wheelNeedsPassword = false;
   nix.settings.trusted-users = [ "nixos" ];
 
-  networking.wireless = {
-    enable = true;
-    userControlled.enable = true;
+  networking  = {
+    hostName = "zorc";
+    wireless = {
+      enable = true;
+      userControlled.enable = true;
+    };
   };
 
   services = {
