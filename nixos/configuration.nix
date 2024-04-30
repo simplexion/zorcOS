@@ -3,6 +3,8 @@
   imports = [
     ./minification.nix
     ./can.nix
+    ./zorc.nix
+    ./ethernet.nix
   ]
   ++ lib.optionals (builtins.pathExists ./hardware-configuration.nix) [ ./hardware-configuration.nix ]
   ++ lib.optionals (builtins.pathExists ./custom.nix) [ ./custom.nix ];
@@ -37,7 +39,8 @@
     # getty.autologinUser = "nixos";
     openssh = {
       enable = true;
-      passwordAuthentication = if config.users.extraUsers.nixos.openssh.authorizedKeys.keys == [ ] then true else false;
+      # settings.PasswordAuthentication = if config.users.extraUsers.nixos.openssh.authorizedKeys.keys == [ ] then true else false;
+      settings.PasswordAuthentication = true;
       # forwardX11 = true;
     };
   };

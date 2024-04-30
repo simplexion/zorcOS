@@ -1,14 +1,16 @@
-# NixOS ARM
+# ZeroOne-Rudder-Control Operating System
 Nix expressions for building NixOS images for ARM SBCs.
 
 ## TL;DR
 ```shell
 export \
-MACHINE=raspberry-pi-3 \
+MACHINE=raspberry-pi-zero-w \
 SD_CARD=/dev/sda \
-NIXPKGS_REV=ea4c80b
+NIXPKGS_REV=70bdadeb94ffc8806c0570eb5c2695ad29f0e421
 
 nix-build -I nixpkgs="https://github.com/NixOS/nixpkgs/archive/${NIXPKGS_REV}.tar.gz" -I machine=machines/$MACHINE --out-link out-links/$MACHINE
+
+sudo sh -c "zstd -dcf out-links/$MACHINE/sd-image/*.img.zst | dd status=progress bs=64k iflag=fullblock oflag=direct of=$SD_CARD && sync && eject $SD_CARD"
 ```
 
 ## Building

@@ -1,0 +1,3 @@
+[submodule "zorc"]
+	path = zorc
+	url = git@github.com:simplexion/ZeroOne-Rudder-Control.git
